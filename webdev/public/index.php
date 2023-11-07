@@ -27,6 +27,9 @@
     // shows the user profile - if logged in!
     $app->get("profile", [ "Method" => "profile", "Controller" => MainController::class ] );
 
+    
+    $app->get("test", [ "Method" => "test", "Controller" => MainController::Class ] );
+
 
 
     $app->makeCustomDefaultRoute( App::NotFound, [ "Method" => "notFound", "Controller" => MainController::class ] );

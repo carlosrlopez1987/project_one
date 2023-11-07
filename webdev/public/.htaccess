@@ -1,0 +1,10 @@
+
+RewriteEngine On
+
+# Block direct access to all files and directories except index.php
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Rewrite all requests to index.php
+RewriteRule ^(.*)$ public/index.php?$1 [L,QSA]

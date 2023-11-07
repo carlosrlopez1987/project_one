@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Kleber\\": "app/"
+        }
+    },
+    "require-dev": {
+        "bamarni/composer-bin-plugin": "*"
+    }
+}

@@ -16,7 +16,7 @@ class Helpers {
 
     public static function assertEquality( $a, $b)
     {
-        return ( $a == $b ) ? true : false;
+        return $a == $b;
     }
 
 

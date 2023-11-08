@@ -37,6 +37,16 @@ class App {
     }
 
 
+    public function addDependency( $class )
+    {
+        $obj = new $class();
+        $name = $obj->getName();
+        $this->{$name} = $obj;
+        return $this;
+    }
+
+
+
     public function service( $name )
     {
         return $this->container[ $name ] ?: false;
@@ -86,12 +96,12 @@ class App {
             }
             else
             {
-                Helpers::log( "parse last else!" );
+                Helpers::log("parse last else!");
             }
         }
         else
         {
-            Helpers::log( "Something iscwrong");
+            Helpers::log( "Something is wrong");
         }
         
     }
@@ -140,7 +150,7 @@ class App {
     public function start()
     {
         //$this->get( self::NotFound, [ "Method" => "notFound", "Controller" => MainController::class ] );
-        echo "Starting!";
+        //echo "Starting!";
         $this->parseRequest();
         
     }
@@ -165,8 +175,8 @@ class App {
         {
             if ( is_array( $route ) )
             {
-                $isMethod = Helpers::assertEquality( $route[ "Method" ], $method );
-                $isPath   = Helpers::assertEquality( $route[ "Path" ], $path );
+                $isMethod = $route[ "Method" ] == $method;
+                $isPath   = $route[ "Path" ] == $path;
 
                 if ( $isMethod && $isPath )
                 {
@@ -235,11 +245,14 @@ class App {
         return $route;
     }
 
-    public function get( $path, $action ){
+    public function get( $path, $action )
+    {
+        //$this->service("router")->makeRoute( Http::GET, $path, $action );
         $this->route( Http::GET, $path, $action );
     }
 
-    public function post( $path, $action ){
+    public function post( $path, $action )
+    {
         $this->route( Http::POST, $path, $action );
     }
 }

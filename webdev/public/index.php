@@ -9,9 +9,11 @@
 
     $app = App::get_instance();
 
+    $app->addDependency( Router::class )->make();
+
     $router = new Router( $app );
 
-    //$app->registerService( $router );
+    $app->registerService( $router );
 
     //Helpers::log( "Index.php file" );
     

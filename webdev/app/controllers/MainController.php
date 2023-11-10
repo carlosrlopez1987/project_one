@@ -16,6 +16,7 @@ class MainController extends BaseController {
     public function index() 
     {
         echo "index<br />";
+        
         $data = [
             "Page" => realpath( __DIR__ . "/../html/main.php" ),
             "Name" => "Kleber"

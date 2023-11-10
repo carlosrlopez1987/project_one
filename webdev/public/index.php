@@ -9,11 +9,17 @@
 
     $app = App::get_instance();
 
-    $app->addDependency( Router::class )->make();
+    $app->addDependency( 
+        function( $container )
+        { 
+            //echo "Router dependency created!";
+            return new Router( $container); 
+        } 
+    );
 
-    $router = new Router( $app );
+    //$router = new Router( $app );
 
-    $app->registerService( $router );
+    //$app->registerService( $router );
 
     //Helpers::log( "Index.php file" );
     

@@ -39,9 +39,18 @@ class App {
 
     public function addDependency( $class )
     {
-        $obj = new $class();
-        $name = $obj->getName();
-        $this->{$name} = $obj;
+        //echo "Adding dependency";
+        if ( !is_callable($class) )
+        {
+            $obj = new $class();
+            $name = $obj->getName();
+            $this->{$name} = $obj;
+        }
+        else
+        {
+            $class( $this);
+        }
+
         return $this;
     }
 
@@ -82,6 +91,7 @@ class App {
         $reqMethod = $this->getRequestMethod();
         $reqPath   = $this->getPath();
 
+        //echo "ReqMethod:" . $reqMethod . "<br />";
         $route  = $this->find( $reqMethod, $reqPath[0] );
 
         if ( isset($route) && !is_bool($route) )

@@ -9,7 +9,7 @@ use Kleber\core\routing\Route as Route;
 
 class Router implements RouterInterface, ServiceInterface 
 {
-    protected $app;
+    protected $container;
     protected $routes;
 
     private const Name = "Router";
@@ -22,7 +22,8 @@ class Router implements RouterInterface, ServiceInterface
     public const ALL    = "GET|POST|PUT|DELETE|UPDATE";
 
     public function __construct( $app ){ 
-        $this->app = $app;
+
+        $this->container = $app;
         $this->routes = $app->routes(); 
     }
 
